@@ -11,7 +11,7 @@ class _FloodscreenState extends State<Floodscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("flood Risk Screen"),),
+      appBar: AppBar(title: Text("Flood Risk Screen"),),
     );
   }
 }

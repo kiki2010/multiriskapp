@@ -11,8 +11,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'multiRisk app',
+      themeMode: ThemeMode.light,
       theme: ThemeData(
-        colorScheme: ColorScheme(brightness: Brightness.light, primary: Colors.orange, onPrimary: Colors.orangeAccent, secondary: Colors.cyan, onSecondary: Colors.cyanAccent, error: Colors.red, onError: Colors.redAccent, surface: Colors.white24, onSurface: Colors.white70),
+        colorScheme: ColorScheme(
+          brightness: Brightness.light,
+          primary: Colors.orange,
+          onPrimary: Colors.orangeAccent,
+          secondary: Colors.cyan,
+          onSecondary: Colors.cyanAccent,
+          error: Colors.red,
+          onError: Colors.redAccent,
+          surface: Colors.white24,
+          onSurface: Colors.white70,
+        ),
         primarySwatch: Colors.orange,
         fontFamily: 'Arial',
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -22,12 +33,12 @@ class MyApp extends StatelessWidget {
             textStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              ),
+            ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
-            )
-          )
-        )
+            ),
+          ),
+        ),
       ),
       home: bottomnav(),
     );

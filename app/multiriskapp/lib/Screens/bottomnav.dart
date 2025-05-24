@@ -34,36 +34,36 @@ class _bottomnavState extends State<bottomnav> {
           });
         },
         elevation: 0,
+        selectedItemColor: Colors.orange,       
+        unselectedItemColor: Colors.white,        
+        type: BottomNavigationBarType.fixed,     
+        backgroundColor: colors.surface,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.local_fire_department_outlined),
             activeIcon: Icon(Icons.local_fire_department),
             label: 'Fire Risk',
-            backgroundColor: colors.surface,
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.flood_outlined),
             activeIcon: Icon(Icons.flood),
             label: 'Flood Risk',
-            backgroundColor: colors.surface,
           ),
-
+          
           BottomNavigationBarItem(
             icon: Icon(Icons.sports_esports_outlined),
             activeIcon: Icon(Icons.sports_esports),
             label: 'Games',
-            backgroundColor: colors.surface,
           ),
-
+          
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),
             activeIcon: Icon(Icons.settings),
             label: 'Setting',
-            backgroundColor: colors.surface,
           ),
-        ]
-      ),
+        ],
+      )
     );
   }
 }
