@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multiriskapp/Screens/firerisk.dart';
 import 'package:multiriskapp/Screens/floodrisk.dart';
-import 'package:multiriskapp/Screens/games.dart';
+import 'package:multiriskapp/Screens/nearcordoba.dart';
 import 'package:multiriskapp/Screens/setting.dart';
 
 class bottomnav extends StatefulWidget {
@@ -17,7 +17,7 @@ class _bottomnavState extends State<bottomnav> {
   final screens = [
     fireScreen(),
     Floodscreen(),
-    gameScreen(),
+    nearCordobaScreen(),
     settingScreen()
   ];
 
