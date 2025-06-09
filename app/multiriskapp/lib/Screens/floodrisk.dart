@@ -15,19 +15,6 @@ class _FloodscreenState extends State<Floodscreen> {
   @override
   void initState() {
     super.initState();
-    getActualLocation();
-  }
-
-  void getActualLocation() async {
-    try {
-      final pos = await getUserLocation();
-      setState(() {
-        posicion = pos;
-      });
-      print('Latitud: ${pos.latitude}, Longitud: ${pos.longitude}');
-    } catch (e) {
-      print('Error al obtener la ubicación: $e');
-    }
   }
 
   @override
@@ -36,8 +23,7 @@ class _FloodscreenState extends State<Floodscreen> {
       appBar: AppBar(title: Text("Flood Risk Screen"),),
       body: Column(
         children: [
-          Text('Latitud: ${posicion?.latitude ?? "Cargando..."}'),
-          Text('Longitud: ${posicion?.longitude ?? "Cargando..."}'),
+          Text('Flood Risk'),
         ],
       ),
     );

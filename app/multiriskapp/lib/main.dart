@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:multiriskapp/Screens/bottomnav.dart';
 import 'package:geolocator/geolocator.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Position position = await getUserLocation();
+
+  runApp(MyApp(position: position));
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Position position;
+
+  const MyApp({super.key, required this.position});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +48,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: bottomnav(),
+      home: bottomnav(position:position),
     );
   }
 }

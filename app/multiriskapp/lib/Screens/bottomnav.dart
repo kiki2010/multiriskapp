@@ -3,9 +3,11 @@ import 'package:multiriskapp/Screens/firerisk.dart';
 import 'package:multiriskapp/Screens/floodrisk.dart';
 import 'package:multiriskapp/Screens/nearcordoba.dart';
 import 'package:multiriskapp/Screens/setting.dart';
+import 'package:geolocator/geolocator.dart';
 
 class bottomnav extends StatefulWidget {
-  const bottomnav({super.key});
+  final Position position;
+  const bottomnav({super.key, required this.position});
 
   @override
   State<bottomnav> createState() => _bottomnavState();
