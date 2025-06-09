@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: bottomnav(position:position),
+      home: bottomnav(position: position),
     );
   }
 }

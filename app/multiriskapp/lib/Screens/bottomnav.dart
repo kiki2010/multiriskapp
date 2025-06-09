@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multiriskapp/main.dart';
 import 'package:multiriskapp/Screens/firerisk.dart';
 import 'package:multiriskapp/Screens/floodrisk.dart';
 import 'package:multiriskapp/Screens/nearcordoba.dart';
@@ -16,12 +17,18 @@ class bottomnav extends StatefulWidget {
 class _bottomnavState extends State<bottomnav> {
   int selectedIndex = 0;
 
-  final screens = [
-    fireScreen(),
-    Floodscreen(),
-    nearCordobaScreen(),
-    settingScreen()
-  ];
+  late final List<Widget> screens;
+
+  @override
+  void initState() {
+    super.initState();
+    screens = [
+      FireScreen(position: widget.position),
+      Floodscreen(position: widget.position,),
+      nearCordobaScreen(),
+      settingScreen(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

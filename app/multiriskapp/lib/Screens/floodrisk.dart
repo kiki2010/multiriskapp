@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:multiriskapp/main.dart';
 import 'package:geolocator/geolocator.dart';
 
 class Floodscreen extends StatefulWidget {
-  const Floodscreen({super.key});
+  final Position position;
+  Floodscreen({Key? key, required this.position}) : super(key: key);
 
   @override
   State<Floodscreen> createState() => _FloodscreenState();
 }
 
 class _FloodscreenState extends State<Floodscreen> {
-  Position? posicion;
-
   @override
   void initState() {
     super.initState();
@@ -23,7 +21,7 @@ class _FloodscreenState extends State<Floodscreen> {
       appBar: AppBar(title: Text("Flood Risk Screen"),),
       body: Column(
         children: [
-          Text('Flood Risk'),
+          Text("Lat: ${widget.position.latitude}, Lng: ${widget.position.longitude}"),
         ],
       ),
     );

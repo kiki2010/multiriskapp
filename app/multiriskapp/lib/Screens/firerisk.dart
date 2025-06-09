@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
-class fireScreen extends StatefulWidget {
-  const fireScreen({super.key});
+class FireScreen extends StatefulWidget {
+  final Position position;
+
+  FireScreen({Key? key, required this.position}) : super(key: key);
 
   @override
-  State<fireScreen> createState() => _fireScreenState();
+  State<FireScreen> createState() => _FireScreenState();
 }
 
-class _fireScreenState extends State<fireScreen> {
+class _FireScreenState extends State<FireScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Fire Risk Screen"),),
+      appBar: AppBar(title: const Text("Fire Risk Screen")),
+      body: Column(
+        children: [
+          Text("Lat: ${widget.position.latitude}, Lng: ${widget.position.longitude}"),
+        ],
+      ),
     );
   }
 }
