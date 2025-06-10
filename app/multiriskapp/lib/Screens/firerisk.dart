@@ -1,3 +1,4 @@
+import 'package:multiriskapp/weatherstationsdata.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -11,15 +12,63 @@ class FireScreen extends StatefulWidget {
 }
 
 class _FireScreenState extends State<FireScreen> {
+  final WeatherStationService _weatherService = WeatherStationService();
+
+  Map<String, dynamic>? actualData;
+  Map<String, dynamic>? historicalData;
+  Map<String, dynamic>? forecastData;
+
+  bool isLoading = true;
+  String? error;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadWeatherData();
+  }
+
+  Future<void> _loadWeatherData() async {
+    try {
+      await _weatherService.getNearestStation(widget.position);
+      final actual = await _weatherService.getActualData(widget.position);
+      final historical = await _weatherService.getHistoricalData(widget.position);
+      final forecast = await _weatherService.getForecastData(widget.position);
+
+      setState(() {
+        actualData = actual;
+        historicalData = historical;
+        forecastData = forecast;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        error = e.toString();
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Fire Risk Screen")),
-      body: Column(
-        children: [
-          Text("Lat: ${widget.position.latitude}, Lng: ${widget.position.longitude}"),
-        ],
-      ),
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : error != null
+              ? Center(child: Text("Error: $error"))
+              : SingleChildScrollView(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Lat: ${widget.position.latitude}, Lng: ${widget.position.longitude}"),
+                      const SizedBox(height: 20),
+                      Text("Temperature: ${actualData!['temperature']} °C"),
+                      Text("Humidity: ${actualData!['humidity']} %"),
+                      Text("Wind: ${actualData!['windSpeed']} km/h"),
+                    ],
+                  ),
+                ),
     );
   }
 }
