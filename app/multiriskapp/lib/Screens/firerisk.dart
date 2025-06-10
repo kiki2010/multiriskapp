@@ -15,8 +15,6 @@ class _FireScreenState extends State<FireScreen> {
   final WeatherStationService _weatherService = WeatherStationService();
 
   Map<String, dynamic>? actualData;
-  Map<String, dynamic>? historicalData;
-  Map<String, dynamic>? forecastData;
 
   bool isLoading = true;
   String? error;
@@ -31,13 +29,9 @@ class _FireScreenState extends State<FireScreen> {
     try {
       await _weatherService.getNearestStation(widget.position);
       final actual = await _weatherService.getActualData(widget.position);
-      final historical = await _weatherService.getHistoricalData(widget.position);
-      final forecast = await _weatherService.getForecastData(widget.position);
 
       setState(() {
         actualData = actual;
-        historicalData = historical;
-        forecastData = forecast;
         isLoading = false;
       });
     } catch (e) {
