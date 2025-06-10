@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:multiriskapp/main.dart';
 import 'package:multiriskapp/Screens/firerisk.dart';
 import 'package:multiriskapp/Screens/floodrisk.dart';
 import 'package:multiriskapp/Screens/nearcordoba.dart';
