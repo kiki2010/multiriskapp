@@ -34,7 +34,7 @@ model = Sequential([
 ])
 
 #Train the model
-model.copile(
+model.compile(
     optimizer='adam',
     loss='categorical_crossentropy',
     metrics=['accuracy']
