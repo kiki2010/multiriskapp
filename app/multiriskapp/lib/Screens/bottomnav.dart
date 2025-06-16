@@ -60,9 +60,9 @@ class _bottomnavState extends State<bottomnav> {
           ),
           
           BottomNavigationBarItem(
-            icon: Icon(Icons.sports_esports_outlined),
-            activeIcon: Icon(Icons.sports_esports),
-            label: 'Games',
+            icon: Icon(Icons.map_outlined),
+            activeIcon: Icon(Icons.map),
+            label: 'Near me',
           ),
           
           BottomNavigationBarItem(
