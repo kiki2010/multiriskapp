@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:multiriskapp/weatherstationsdata.dart';
+import 'package:multiriskapp/predict.dart';
 
 class Floodscreen extends StatefulWidget {
   final Position position;
@@ -15,6 +16,7 @@ class _FloodscreenState extends State<Floodscreen> {
 
   Map<String, dynamic>? actualData;
   Map<String, dynamic>? historicalData;
+  String? FloodRiskLevel;
 
   bool isLoading = true;
   String? error;
@@ -23,6 +25,7 @@ class _FloodscreenState extends State<Floodscreen> {
   void initState() {
     super.initState();
     _loadWeatherData();
+    _predictFloodRisk();
   }
 
   Future<void> _loadWeatherData() async {
@@ -42,6 +45,18 @@ class _FloodscreenState extends State<Floodscreen> {
         isLoading = false;
       });
     }
+  }
+
+  Future<void> _predictFloodRisk() async {
+    Position pos = await Geolocator.getCurrentPosition();
+
+    final predictor = FloodPrediction();
+    await predictor.loadFloodModel();
+    await predictor.predictFlood(pos);
+
+    FloodRiskLevel = predictor.FloodRiskLevel;
+
+    print(predictor.FloodRiskLevel);
   }
 
   @override
@@ -68,6 +83,8 @@ class _FloodscreenState extends State<Floodscreen> {
               Text("Average Precipitations: ${historicalData!['average']} mm"),
               Text("Standar Deviation: ${historicalData!['standardDeviation']}"),
               Text("SPI: ${historicalData!['spi']}"),
+              const Divider(),
+              Text("Risk Level: $FloodRiskLevel"),
             ],
           ),
         )
