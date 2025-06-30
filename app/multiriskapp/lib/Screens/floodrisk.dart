@@ -16,7 +16,7 @@ class _FloodscreenState extends State<Floodscreen> {
 
   Map<String, dynamic>? actualData;
   Map<String, dynamic>? historicalData;
-  String? FloodRiskLevel;
+  String? floodRiskLevel;
 
   bool isLoading = true;
   String? error;
@@ -55,10 +55,10 @@ class _FloodscreenState extends State<Floodscreen> {
     await predictor.predictFlood(pos);
 
     setState(() {
-      FloodRiskLevel = predictor.FloodRiskLevel;
+      floodRiskLevel = predictor.floodRiskLevel;
     });
 
-    print(predictor.FloodRiskLevel);
+    print(predictor.floodRiskLevel);
   }
 
   @override
@@ -86,7 +86,7 @@ class _FloodscreenState extends State<Floodscreen> {
               Text("Standar Deviation: ${historicalData!['standardDeviation']}"),
               Text("SPI: ${historicalData!['spi']}"),
               const Divider(),
-              Text("Risk Level: $FloodRiskLevel"),
+              Text("Risk Level: $floodRiskLevel"),
             ],
           ),
         )

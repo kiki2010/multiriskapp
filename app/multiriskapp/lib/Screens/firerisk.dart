@@ -1,3 +1,4 @@
+import 'package:multiriskapp/predict.dart';
 import 'package:multiriskapp/weatherstationsdata.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,6 +16,7 @@ class _FireScreenState extends State<FireScreen> {
   final WeatherStationService _weatherService = WeatherStationService();
 
   Map<String, dynamic>? actualData;
+  String? fireRiskLevel;
 
   bool isLoading = true;
   String? error;
@@ -23,6 +25,7 @@ class _FireScreenState extends State<FireScreen> {
   void initState() {
     super.initState();
     _loadWeatherData();
+    _predictFireRisk();
   }
 
   Future<void> _loadWeatherData() async {
@@ -40,6 +43,20 @@ class _FireScreenState extends State<FireScreen> {
         isLoading = false;
       });
     }
+  }
+
+  Future<void> _predictFireRisk() async {
+    Position pos = await Geolocator.getCurrentPosition();
+
+    final predictor = FirePrediction();
+    await predictor.loadFireModel();
+    await predictor.predictFire(pos);
+
+    setState(() {
+      fireRiskLevel = predictor.fireRiskLevel;
+    });
+
+    print('Fire Risk: $fireRiskLevel');
   }
 
   @override
@@ -60,6 +77,8 @@ class _FireScreenState extends State<FireScreen> {
                       Text("Temperature: ${actualData!['temperature']} °C"),
                       Text("Humidity: ${actualData!['humidity']} %"),
                       Text("Wind: ${actualData!['windSpeed']} km/h"),
+                      const Divider(),
+                      Text("Fire Risk: $fireRiskLevel"),
                     ],
                   ),
                 ),
