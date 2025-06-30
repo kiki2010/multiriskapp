@@ -54,7 +54,9 @@ class _FloodscreenState extends State<Floodscreen> {
     await predictor.loadFloodModel();
     await predictor.predictFlood(pos);
 
-    FloodRiskLevel = predictor.FloodRiskLevel;
+    setState(() {
+      FloodRiskLevel = predictor.FloodRiskLevel;
+    });
 
     print(predictor.FloodRiskLevel);
   }

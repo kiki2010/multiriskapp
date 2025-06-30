@@ -31,10 +31,10 @@ class FloodPrediction {
         final historicalData = await weatherService.getHistoricalData(position);
 
         //Get the variables needed to calculate risk
-        double spi = historicalData!['spi'] ?? 0.0 ;
-        double precipTotal = actualData!['rain'] ?? 0.0 ;
-        double precipRate = actualData!['precipRate'] ?? 0.0 ;
-        double humidity = (actualData!['humidity'] ?? 0.0) / 100;
+        double spi = historicalData['spi'] ?? 0.0 ;
+        double precipTotal = actualData['rain'] ?? 0.0 ;
+        double precipRate = actualData['precipRate'] ?? 0.0 ;
+        double humidity = (actualData['humidity'] ?? 0.0) / 100;
 
         List<double> FloodInputData = [spi, precipTotal, precipRate, humidity];
 
@@ -62,8 +62,9 @@ class FloodPrediction {
                 break;
         }
 
-        print('Flood Risj: $FloodRiskLevel');
+        print('Flood RisK: $FloodRiskLevel');
     }
 }
 
 //Fire AI model
+
