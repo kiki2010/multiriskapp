@@ -2,10 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:multiriskapp/weatherstationsdata.dart';
 
 import 'package:geolocator/geolocator.dart';
-import 'dart:convert';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'dart:typed_data';
-import 'dart:math';
 
 //Flood AI model
 class FloodPrediction {
@@ -67,4 +65,25 @@ class FloodPrediction {
 }
 
 //Fire AI model
+class FirePrediction {
+    Interpreter? _interpreter;
+    String FireRiskLevel = "Not inferred";
 
+    Future<void> loadFireModel() async {
+        try {
+            _interpreter = await Interpreter.fromAsset('assets/flood_model.tflite');
+        } catch (e) {
+            print('error');
+        }
+    }
+
+    Future<void> predictFire(Position position) async {
+        final weatherService = WeatherStationService();
+
+        //Get actual data
+        final actualData = await weatherService.getActualData(position);
+
+        //Variables for risk calculation
+        
+    }
+}
