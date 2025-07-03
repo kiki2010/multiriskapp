@@ -63,6 +63,27 @@ class _FloodscreenState extends State<Floodscreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color floodRiskColor;
+    String floodRiskText;
+
+    switch(floodRiskLevel) {
+      case 'LOW':
+        floodRiskText = 'Low';
+        floodRiskColor = Colors.green;
+        break;
+      case 'MEDIUM':
+        floodRiskText = 'Medium';
+        floodRiskColor = Colors.amber;
+        break;
+      case 'HIGH':
+        floodRiskText = 'High';
+        floodRiskColor = Colors.red;
+        break;
+      default:
+        floodRiskText = 'Getting Risk';
+        floodRiskColor = Colors.grey;
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text("Flood Risk Screen"),),
       body: isLoading
@@ -72,21 +93,17 @@ class _FloodscreenState extends State<Floodscreen> {
         : SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Lat: ${widget.position.latitude}, Lng: ${widget.position.longitude}"),
-              const SizedBox(height: 20,),
+              const Divider(),
+              Icon(Icons.water, color: floodRiskColor, size: 65,),
+              Text("Flood Risk: $floodRiskText"),
+              const SizedBox(height: 0),
               Text("Humidity: ${actualData!['humidity']} %"),
               Text("Rain (Total): ${actualData!['rain']} mm"),
               Text("Rain (Rate): ${actualData!['precipRate']}"),
-              const Divider(),
-              Text("Daily Precipitations: ${historicalData!['dailyPrecipitations']}"),
-              Text("Total Precipitations: ${historicalData!['totalPrecipitation']} mm"),
-              Text("Average Precipitations: ${historicalData!['average']} mm"),
-              Text("Standar Deviation: ${historicalData!['standardDeviation']}"),
               Text("SPI: ${historicalData!['spi']}"),
               const Divider(),
-              Text("Risk Level: $floodRiskLevel"),
             ],
           ),
         )

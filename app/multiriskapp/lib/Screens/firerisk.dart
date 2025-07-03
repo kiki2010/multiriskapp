@@ -66,15 +66,15 @@ class _FireScreenState extends State<FireScreen> {
 
     switch(fireRiskLevel) {
       case 'LOW':
-        fireRiskText = 'LOW';
+        fireRiskText = 'Low';
         fireRiskColor = Colors.green;
         break;
       case 'MEDIUM':
-        fireRiskText = 'MEDIUM';
+        fireRiskText = 'Medium';
         fireRiskColor = Colors.amber;
         break;
       case 'HIGH':
-        fireRiskText = 'HiGH';
+        fireRiskText = 'High';
         fireRiskColor = Colors.red;
         break;
       default:
@@ -91,16 +91,16 @@ class _FireScreenState extends State<FireScreen> {
               : SingleChildScrollView(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Divider(),
-                      Icon(Icons.water, color: fireRiskColor, size: 65,),
-                      const SizedBox(height: 20),
+                      Icon(Icons.local_fire_department, color: fireRiskColor, size: 65,),
+                      Text("Fire Risk: $fireRiskText"),
+                      const SizedBox(height: 0),
                       Text("Temperature: ${actualData!['temperature']} °C"),
                       Text("Humidity: ${actualData!['humidity']} %"),
                       Text("Wind: ${actualData!['windSpeed']} km/h"),
                       const Divider(),
-                      Text("Fire Risk: $fireRiskText"),
                     ],
                   ),
                 ),
