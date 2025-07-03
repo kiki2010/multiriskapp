@@ -42,8 +42,7 @@ class _bottomnavState extends State<bottomnav> {
           });
         },
         elevation: 0,
-        selectedItemColor: Colors.orange,       
-        unselectedItemColor: Colors.white,        
+        selectedItemColor: Colors.orange,        
         type: BottomNavigationBarType.fixed,     
         backgroundColor: colors.surface,
         items: [
