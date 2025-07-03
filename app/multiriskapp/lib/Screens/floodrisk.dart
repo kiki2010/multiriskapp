@@ -5,7 +5,7 @@ import 'package:multiriskapp/predict.dart';
 
 class Floodscreen extends StatefulWidget {
   final Position position;
-  Floodscreen({Key? key, required this.position}) : super(key: key);
+  const Floodscreen({super.key, required this.position});
 
   @override
   State<Floodscreen> createState() => _FloodscreenState();
