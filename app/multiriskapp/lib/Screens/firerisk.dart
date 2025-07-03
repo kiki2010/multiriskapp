@@ -61,6 +61,27 @@ class _FireScreenState extends State<FireScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color fireRiskColor;
+    String fireRiskText;
+
+    switch(fireRiskLevel) {
+      case 'LOW':
+        fireRiskText = 'LOW';
+        fireRiskColor = Colors.green;
+        break;
+      case 'MEDIUM':
+        fireRiskText = 'MEDIUM';
+        fireRiskColor = Colors.amber;
+        break;
+      case 'HIGH':
+        fireRiskText = 'HiGH';
+        fireRiskColor = Colors.red;
+        break;
+      default:
+        fireRiskText = 'Getting Risk';
+        fireRiskColor = Colors.grey;
+    }
+
     return Scaffold(
       appBar: AppBar(title: const Text("Fire Risk Screen")),
       body: isLoading
@@ -72,13 +93,14 @@ class _FireScreenState extends State<FireScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Lat: ${widget.position.latitude}, Lng: ${widget.position.longitude}"),
+                      const Divider(),
+                      Icon(Icons.water, color: fireRiskColor, size: 65,),
                       const SizedBox(height: 20),
                       Text("Temperature: ${actualData!['temperature']} °C"),
                       Text("Humidity: ${actualData!['humidity']} %"),
                       Text("Wind: ${actualData!['windSpeed']} km/h"),
                       const Divider(),
-                      Text("Fire Risk: $fireRiskLevel"),
+                      Text("Fire Risk: $fireRiskText"),
                     ],
                   ),
                 ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "140335952475",
+    "project_id": "multiriskapp",
+    "storage_bucket": "multiriskapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140335952475:android:78ed55fef9bf9a2567857e",
+        "android_client_info": {
+          "package_name": "com.example.multiriskapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFEDM7dYrHnLdkVbeI9O0a8ofpBPYKuM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

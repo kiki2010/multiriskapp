@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:intl/intl.dart';
 
-const apiKey = ""; //weatherunderground Apikey
+const apiKey = "026cda1f35b54cddacda1f35b53cdda3"; //weatherunderground Apikey
 
 class WeatherStationService {
   static final WeatherStationService _instance = WeatherStationService._internal();
