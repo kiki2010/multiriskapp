@@ -10,6 +10,22 @@ class nearCordobaScreen extends StatefulWidget {
 class _nearCordobaScreenState extends State<nearCordobaScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text("Places Near Me"),),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Divider(),
+            Text("Parks and Campings"),
+            Divider(),
+            Text("Beaches"),
+            Divider(),
+            Text("Campings"),
+            Divider(),
+          ],
+        ),
+      ),
+    );
   }
 }
