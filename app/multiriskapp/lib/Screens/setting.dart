@@ -13,6 +13,20 @@ class _settingScreenState extends State<settingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Setting Screen"),),
+      body: const Center(
+        child:  Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Divider(),
+              Text('Language'),
+            Divider(),
+              Text('Theme'),
+            Divider(),
+              Text('Repeat Tutorial'),
+            Divider(),
+          ],
+        ),
+      ),
     );
   }
 }
