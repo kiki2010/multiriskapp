@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:multiriskapp/Screens/bottomnav.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:multiriskapp/providers/theme.dart';
+import 'package:multiriskapp/models/theme_preferences.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ThemePreferences prefs = ThemePreferences();
+  String theme = await prefs.getTheme();
 
   Position position = await getUserLocation();
 
-  runApp(MyApp(position: position));
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider()..setTheme = theme,
+      child: MyApp(position: position),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,37 +27,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.theme == ThemePreferences.DARK;
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'multiRisk app',
-      themeMode: ThemeMode.light,
-      theme: ThemeData(
-        colorScheme: ColorScheme(
-          brightness: Brightness.light,
-          primary: Colors.orange,
-          onPrimary: Colors.orangeAccent,
-          secondary: Colors.cyan,
-          onSecondary: Colors.cyanAccent,
-          error: Colors.red,
-          onError: Colors.redAccent,
-          surface: Colors.white24,
-          onSurface: Colors.white70,
-        ),
-        primarySwatch: Colors.orange,
-        fontFamily: 'Arial',
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.orange,
-            foregroundColor: Colors.white,
-            textStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
-      ),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
       home: bottomnav(position: position),
     );
   }
