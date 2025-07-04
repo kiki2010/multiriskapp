@@ -4,13 +4,18 @@ import 'package:geolocator/geolocator.dart';
 import 'package:multiriskapp/providers/theme.dart';
 import 'package:multiriskapp/models/theme_preferences.dart';
 import 'package:provider/provider.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ThemePreferences prefs = ThemePreferences();
   String theme = await prefs.getTheme();
 
   Position position = await getUserLocation();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     ChangeNotifierProvider(
