@@ -13,7 +13,7 @@ class Floodscreen extends StatefulWidget {
 
 class _FloodscreenState extends State<Floodscreen> {
   final WeatherStationService _weatherService = WeatherStationService();
-
+  //Maps for saving the data get on the weather API
   Map<String, dynamic>? actualData;
   Map<String, dynamic>? historicalData;
   String? floodRiskLevel;
@@ -21,19 +21,22 @@ class _FloodscreenState extends State<Floodscreen> {
   bool isLoading = true;
   String? error;
 
+  //getting the meteorological data and AI prediction, executing the funtions in charge of that
   @override
   void initState() {
     super.initState();
     _loadWeatherData();
     _predictFloodRisk();
   }
-
+  
+  //Weather data
   Future<void> _loadWeatherData() async {
     try {
       await _weatherService.getNearestStation(widget.position);
       final actual = await _weatherService.getActualData(widget.position);
       final historical = await _weatherService.getHistoricalData(widget.position);
 
+      //Updating the values ​​of the variables with the data obtained
       setState(() {
         actualData = actual;
         historicalData = historical;
@@ -47,13 +50,15 @@ class _FloodscreenState extends State<Floodscreen> {
     }
   }
 
+  //AI prediction
   Future<void> _predictFloodRisk() async {
     Position pos = await Geolocator.getCurrentPosition();
 
     final predictor = FloodPrediction();
     await predictor.loadFloodModel();
     await predictor.predictFlood(pos);
-
+    
+    //Save the flood risk
     setState(() {
       floodRiskLevel = predictor.floodRiskLevel;
     });
@@ -65,7 +70,8 @@ class _FloodscreenState extends State<Floodscreen> {
   Widget build(BuildContext context) {
     Color floodRiskColor;
     String floodRiskText;
-
+    
+    //Depending on the case, determine a text and color
     switch(floodRiskLevel) {
       case 'LOW':
         floodRiskText = 'Low';
@@ -83,9 +89,12 @@ class _FloodscreenState extends State<Floodscreen> {
         floodRiskText = 'Getting Risk';
         floodRiskColor = Colors.grey;
     }
-
+    
+    //Scaffold of the app
     return Scaffold(
+      //Title of the screen
       appBar: AppBar(title: Text("Flood Risk Screen"),),
+      //Body with a Circular Progress Indicator, until the data is obtained
       body: isLoading
       ? const Center(child: CircularProgressIndicator(),)
       : error != null
@@ -95,6 +104,7 @@ class _FloodscreenState extends State<Floodscreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              //Divider, all the data, but the Risk Icon is outside a sizedBox, I think Dividers looks cool
               const Divider(),
               Icon(Icons.water, color: floodRiskColor, size: 65,),
               Text("Flood Risk: $floodRiskText"),
