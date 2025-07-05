@@ -14,7 +14,7 @@ class nearCordobaScreen extends StatefulWidget {
 
 class _nearCordobaScreenState extends State<nearCordobaScreen> {
   late Future<Position> _userPosition;
-  List<String> categories = ['parksorForest', 'beaches', 'Campings'];
+  List<String> categories = ['Campings', 'beaches', 'Parks and Forests'];
   String selectedCategory = 'all';
 
   @override
@@ -41,6 +41,10 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
       future: _loadPlaces(category, pos),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return const CircularProgressIndicator();
+
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
 
         final places = snapshot.data!;
         if (places.isEmpty) return const SizedBox();
@@ -85,7 +89,7 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
             itemBuilder: (context) => [
               const PopupMenuItem(
                 value: 'all',
-                child: Text('Todas'),
+                child: Text('All'),
               ),
               ...categories.map((c) => PopupMenuItem(
                     value: c,
