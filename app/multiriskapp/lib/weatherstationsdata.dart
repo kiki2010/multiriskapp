@@ -13,21 +13,26 @@ class WeatherStationService {
 
   String? _selectedStationId;
 
+  //A variable for each meteorological data
   Map<String, dynamic>? _stationCache;
   Map<String, dynamic>? _actualCache;
   Map<String, dynamic>? _historicalCache;
   Map<String, dynamic>? _forecastCache;
 
+  //Gettting near stations
   Future<Map<String, dynamic>> getNearestStation(Position position) async {
     if (_stationCache != null) return _stationCache!;
-    
+
+    //Variables for latitude and longitude
     final lat = position.latitude;
     final lon = position.longitude;
-
+    
+    //URL for getting near weather stations
     final url = 'https://api.weather.com/v3/location/near?geocode=$lat,$lon&product=pws&format=json&apiKey=$apiKey';
 
     final response = await http.get(Uri.parse(url));
 
+    //When we get the data, look for the data we need
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final stationsIds = data['location']['stationId'];
@@ -35,7 +40,8 @@ class WeatherStationService {
       final distances = data['location']['distanceKm'];
 
       final List<Map<String, dynamic>> stations = [];
-
+      
+      //We check the weather stations and choose the correct ones.
       for (int i = 0; i < stationsIds.length; i++) {
         if (updateTimes[i] != null) {
           stations.add({
@@ -46,12 +52,14 @@ class WeatherStationService {
         }
       }
 
+      //We order the stations putting the closest ones first
       stations.sort((a, b) {
         int updateComparison = b['updateTime'].compareTo(a['updateTime']);
         if (updateComparison != 0) return updateComparison;
         return a['distance'].compareTo(b['distance']);
       });
-
+      
+      //Save the first (selected) station
       if (stations.isNotEmpty) {
         _selectedStationId = stations.first['stationId'];
       } else {
@@ -65,15 +73,21 @@ class WeatherStationService {
     }
   }
 
+  //Getting the actual data, really similar to how we get the station but more simple
   Future<Map<String, dynamic>> getActualData(Position position) async {
     if (_actualCache != null) return _actualCache!;
     if (_selectedStationId == null) await getNearestStation(position);
     
+
+    //We're going to need the selected station ID
     final stationId = _selectedStationId;
 
+    //Create the URL using the station ID
     final url = 'https://api.weather.com/v2/pws/observations/current?stationId=$stationId&format=json&units=m&apiKey=$apiKey';
-
+    
     final response = await http.get(Uri.parse(url));
+
+    //When we get the data, save the things we need.
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final observation = data['observations'][0];
@@ -84,6 +98,7 @@ class WeatherStationService {
       final double precipTotal = observation['metric']['precipTotal']?.toDouble() ?? 0.0;
       final double precipRate = observation['metric']['precipRate']?.toDouble() ?? 0.0;
       
+      //Save the values get
       return {
       'temperature': temp,
       'windSpeed': windSpeed,
@@ -97,20 +112,24 @@ class WeatherStationService {
     }
   }
 
+  //Getting the historical data, and the SPI
   Future<Map<String, dynamic>> getHistoricalData(Position position) async {
     if (_historicalCache != null) return _historicalCache!;
     if (_selectedStationId == null) await getNearestStation(position);
 
+    //We alredy know this part, using the station ID to get the data
     final stationId = _selectedStationId;
     final url =
         'https://api.weather.com/v2/pws/dailysummary/7day?stationId=$stationId&format=json&units=m&apiKey=$apiKey';
 
     final response = await http.get(Uri.parse(url));
 
+    //Some changes, when we get the dara
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final summaries = data['summaries'];
 
+      //Validate the data on summaries
       if (summaries == null || summaries is! List) {
         throw Exception("Invalid or empty summary data");
       }
@@ -120,6 +139,7 @@ class WeatherStationService {
 
       Map<DateTime, List<dynamic>> groupedByDay = {};
 
+      //More because of the API estructure, we get the dates, and save everithing with their day
       for (var entry in summaries) {
         if (entry['obsTimeLocal'] != null) {
           String dateStr = entry['obsTimeLocal'].split(' ')[0];
@@ -127,7 +147,8 @@ class WeatherStationService {
           groupedByDay.putIfAbsent(date, () => []).add(entry);
         }
       }
-
+      
+      //For each day we get the precipitations and we add it to the total
       groupedByDay.forEach((date, entries) {
         List<double> dailyValues = entries
             .where((e) => e['metric']?['precipTotal'] != null)
@@ -142,6 +163,7 @@ class WeatherStationService {
         precipitationValues.add(dailyPrecip);
       });
 
+      //Average daily rainfall
       int n = precipitationValues.length;
       double avg = n > 0 ? totalPrecipitation / n : 0.0;
 
@@ -154,6 +176,7 @@ class WeatherStationService {
 
       double spi = stdDev > 0 ? (totalPrecipitation - avg * n) / (stdDev * sqrt(n)) : 0.0;
 
+      //Save the data
       _historicalCache = {
         'dailyPrecipitations': precipitationValues,
         'totalPrecipitation': totalPrecipitation,
@@ -167,10 +190,12 @@ class WeatherStationService {
       throw Exception('Error getting historical data');
     }
   }
-
+  
+  //getting the forecast
   Future<Map<String, dynamic>> getForecastData(Position position) async {
     if (_forecastCache != null) return _forecastCache!;
 
+    //This time using the latitude and lenght
     final lat = position.latitude;
     final lon = position.longitude;
     final url =
@@ -180,13 +205,13 @@ class WeatherStationService {
     if (response.statusCode == 200) {
       final forecastApi = json.decode(response.body);
 
-      // Obtener datos del API
+      // getting data from API
       final precipChances = forecastApi['daypart'][0]['precipChance'];
       final precipTypes = forecastApi['daypart'][0]['precipType'];
       final daysOfWeek = forecastApi['dayOfWeek'];
       final forecast = forecastApi['daypart'][0]['wxPhraseLong'];
 
-      // Crear lista con los próximos 3 días
+      // Create a list for the next three days
       List<Map<String, dynamic>> threeDayForecast = [];
 
       for (int i = 0; i < 3; i++) {
@@ -198,7 +223,8 @@ class WeatherStationService {
         };
         threeDayForecast.add(dailyForecast);
       }
-
+      
+      //save data
       _forecastCache = {
         'rawData': forecastApi,
         'threeDaySummary': threeDayForecast,
