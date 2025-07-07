@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class nearCordobaScreen extends StatefulWidget {
   const nearCordobaScreen({super.key});
@@ -10,13 +11,13 @@ class nearCordobaScreen extends StatefulWidget {
 }
 
 class _nearCordobaScreenState extends State<nearCordobaScreen> {
-  String selectedCategory = 'selectacategory';
+  String selectedCategory = 'Campings';
   Position? currentPosition;
 
   final Map<String, IconData> categoryIcons = {
     'Campings': Icons.backpack,
-    'ForestandParks': Icons.forest,
-    'Beach': Icons.beach_access,
+    'Parks and Forests': Icons.forest,
+    'beaches': Icons.beach_access,
   };
 
   @override
@@ -53,10 +54,9 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
       appBar: AppBar(
         title: Text("Places Near Cordoba"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
           const Divider(),
           DropdownButton(
             value: selectedCategory,
@@ -70,23 +70,67 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
                 value:  category,
                 child: Text(category),
               );
-            }).toList(),
+            }).toList(),            
           ),
           const Divider(),
-          if (selectedCategory == 'all' || selectedCategory == 'ForestandParks') ...[
-            const Text("Forest and Parks"),
-            const Divider(),
-          ],
-          if (selectedCategory == 'all' || selectedCategory == 'Beach') ...[
-            const Text("Beaches"),
-            const Divider(),
-          ],
-          if (selectedCategory == 'all' || selectedCategory == 'Campings') ...[
-            const Text("Campings"),
-            const Divider(),
-          ],
-          ],
-        ),
+          Expanded(
+            child: StreamBuilder(
+              stream: _categoryStream(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: Text("Loading data"));
+                }
+                final docs = snapshot.data!.docs;
+                
+                if (docs.isEmpty) {
+                  return const Center(child: Text("No places found"));
+                }
+                
+                return ListView(
+                  children: docs.map((doc) {
+                    final data = doc.data() as Map<String, dynamic>;
+                    final name = data['name'] ?? 'Unnamed';
+                    final location = data['location'] ?? ['0', '0'];
+                    final services = data['services'] ?? '';
+                    final link = data['link'] ?? '';
+                    final distance = _calculateDistance(location).toStringAsFixed(2);
+
+                    return ExpansionTile(
+                      leading: Icon(categoryIcons[selectedCategory]),
+                      title: Text(name),
+                      subtitle: Text("$distance km"),
+                      children: [
+                        ListTile(
+                          title: Text('Services $services'),
+                          subtitle: link.isNotEmpty
+                            ? TextButton(
+                              onPressed: () async {
+                                final rawLink = link.trim();
+                                final finalUrl = rawLink.startsWith('http') ? rawLink : 'https://$rawLink';
+                                final uri = Uri.parse(finalUrl);
+                                if (await canLaunchUrl(uri)) {
+                                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("The link couldn't be open")),
+                                  );
+                                }
+                              },
+                              child: const Text(
+                                'Open Link',
+                                style: TextStyle(decoration: TextDecoration.underline),
+                              ),
+                            )
+                          : const Text('')
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
