@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageProvider extends ChangeNotifier {
-  Locale _currentLocale = const Locale('en'); // Idioma predeterminado
+  Locale _currentLocale = const Locale('en');
 
   Locale get currentLocale => _currentLocale;
 
   LanguageProvider() {
-    loadLanguage(); // Cargar el idioma guardado al iniciar
+    loadLanguage();
   }
 
   Future<void> loadLanguage() async {
