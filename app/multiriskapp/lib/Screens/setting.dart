@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:multiriskapp/providers/theme.dart';
 import 'package:multiriskapp/models/theme_preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:provider/provider.dart';
 import 'package:multiriskapp/providers/lenguage_provider.dart';
 
 class settingScreen extends StatelessWidget {

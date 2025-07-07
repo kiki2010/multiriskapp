@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multiriskapp/Screens/bottomnav.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:multiriskapp/generated/l10n.dart';
+import 'package:multiriskapp/providers/lenguage_provider.dart';
 import 'package:multiriskapp/providers/theme.dart';
 import 'package:multiriskapp/models/theme_preferences.dart';
 import 'package:provider/provider.dart';
@@ -19,10 +21,13 @@ void main() async {
   );
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider()..setTheme = theme,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()..setTheme = theme),
+        ChangeNotifierProvider(create: (_) => LanguageProvider()),
+      ],
       child: MyApp(position: position),
-    ),
+    )
   );
 }
 
@@ -46,6 +51,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        AppLocalizations.delegate
       ],
       supportedLocales: [
         Locale('en'),

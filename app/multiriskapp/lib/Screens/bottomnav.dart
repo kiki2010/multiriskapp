@@ -4,6 +4,7 @@ import 'package:multiriskapp/Screens/floodrisk.dart';
 import 'package:multiriskapp/Screens/nearcordoba.dart';
 import 'package:multiriskapp/Screens/setting.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:multiriskapp/generated/l10n.dart';
 
 class bottomnav extends StatefulWidget {
   final Position position;
@@ -49,25 +50,25 @@ class _bottomnavState extends State<bottomnav> {
           BottomNavigationBarItem(
             icon: Icon(Icons.local_fire_department_outlined),
             activeIcon: Icon(Icons.local_fire_department),
-            label: 'Fire Risk',
+            label: AppLocalizations.of(context).fireRisk,
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.flood_outlined),
             activeIcon: Icon(Icons.flood),
-            label: 'Flood Risk',
+            label: AppLocalizations.of(context).floodRisk,
           ),
           
           BottomNavigationBarItem(
             icon: Icon(Icons.map_outlined),
             activeIcon: Icon(Icons.map),
-            label: 'Near me',
+            label: AppLocalizations.of(context).nearMe,
           ),
           
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),
             activeIcon: Icon(Icons.settings),
-            label: 'Setting',
+            label: AppLocalizations.of(context).setting,
           ),
         ],
       )
