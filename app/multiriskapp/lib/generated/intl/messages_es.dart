@@ -21,13 +21,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m0(fireRiskLevel) => "Riesgo de incendio: ${fireRiskLevel}";
 
+  static m1(humidity) => "Humedad: ${humidity} %";
+
+  static m2(temperature) => "Temperatura: ${temperature} °C";
+
+  static m3(wind) => "Velocidad del Viento: \$${wind} km/h";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "fireRisk" : MessageLookupByLibrary.simpleMessage("Riesgo de incendio"),
     "fireRiskLevel" : m0,
     "floodRisk" : MessageLookupByLibrary.simpleMessage("Riesgo de inundación"),
+    "getRisk" : MessageLookupByLibrary.simpleMessage("Obteniendo el Riesgo"),
+    "high" : MessageLookupByLibrary.simpleMessage("Alto"),
+    "humidity" : m1,
+    "low" : MessageLookupByLibrary.simpleMessage("Bajo"),
+    "medium" : MessageLookupByLibrary.simpleMessage("Medio"),
     "nearMe" : MessageLookupByLibrary.simpleMessage("Cerca de mí"),
     "setting" : MessageLookupByLibrary.simpleMessage("Configuración"),
-    "titleFireRiskScreen" : MessageLookupByLibrary.simpleMessage("Pantalla de riesgo de incendio")
+    "temperature" : m2,
+    "titleFireRiskScreen" : MessageLookupByLibrary.simpleMessage("Pantalla de riesgo de incendio"),
+    "wind" : m3
   };
 }

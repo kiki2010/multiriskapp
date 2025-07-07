@@ -87,6 +87,46 @@ class AppLocalizations {
     );
   }
 
+  /// `High`
+  String get high {
+    return Intl.message(
+      'High',
+      name: 'high',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medium`
+  String get medium {
+    return Intl.message(
+      'Medium',
+      name: 'medium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Low`
+  String get low {
+    return Intl.message(
+      'Low',
+      name: 'low',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Getting Risk`
+  String get getRisk {
+    return Intl.message(
+      'Getting Risk',
+      name: 'getRisk',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Fire Risk Screen`
   String get titleFireRiskScreen {
     return Intl.message(
@@ -107,11 +147,35 @@ class AppLocalizations {
     );
   }
 
-  // skipped getter for the 'temperature' key
+  /// `Temperature: {temperature} °C`
+  String temperature(Object temperature) {
+    return Intl.message(
+      'Temperature: $temperature °C',
+      name: 'temperature',
+      desc: '',
+      args: [temperature],
+    );
+  }
 
-  // skipped getter for the 'humidity' key
+  /// `Humidity: {humidity} %`
+  String humidity(Object humidity) {
+    return Intl.message(
+      'Humidity: $humidity %',
+      name: 'humidity',
+      desc: '',
+      args: [humidity],
+    );
+  }
 
-  // skipped getter for the 'wind' key
+  /// `Wind: ${wind} km/h`
+  String wind(Object wind) {
+    return Intl.message(
+      'Wind: \$$wind km/h',
+      name: 'wind',
+      desc: '',
+      args: [wind],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,3 +1,4 @@
+import 'package:multiriskapp/generated/l10n.dart';
 import 'package:multiriskapp/predict.dart';
 import 'package:multiriskapp/weatherstationsdata.dart';
 import 'package:flutter/material.dart';
@@ -73,26 +74,26 @@ class _FireScreenState extends State<FireScreen> {
     //Depending on the case, determine a text and color
     switch(fireRiskLevel) {
       case 'LOW':
-        fireRiskText = 'Low';
+        fireRiskText = AppLocalizations.of(context).low;
         fireRiskColor = Colors.green;
         break;
       case 'MEDIUM':
-        fireRiskText = 'Medium';
+        fireRiskText = AppLocalizations.of(context).medium;
         fireRiskColor = Colors.amber;
         break;
       case 'HIGH':
-        fireRiskText = 'High';
+        fireRiskText = AppLocalizations.of(context).high;
         fireRiskColor = Colors.red;
         break;
       default:
-        fireRiskText = 'Getting Risk';
+        fireRiskText = AppLocalizations.of(context).getRisk;
         fireRiskColor = Colors.grey;
     }
 
     //Scaffold of the app
     return Scaffold(
       //Title of the screen
-      appBar: AppBar(title: const Text("Fire Risk Screen")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).titleFireRiskScreen)),
       //Body with a Circular Progress Indicator, until the data is obtained
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -106,11 +107,11 @@ class _FireScreenState extends State<FireScreen> {
                       //Divider, all the data, but the Risk Icon is outside a sizedBox, I think Dividers looks cool
                       const Divider(),
                       Icon(Icons.local_fire_department, color: fireRiskColor, size: 65,),
-                      Text("Fire Risk: $fireRiskText"),
+                      Text(AppLocalizations.of(context).fireRiskLevel(fireRiskText)),
                       const SizedBox(height: 0),
-                      Text("Temperature: ${actualData!['temperature']} °C"),
-                      Text("Humidity: ${actualData!['humidity']} %"),
-                      Text("Wind: ${actualData!['windSpeed']} km/h"),
+                      Text(AppLocalizations.of(context).temperature(actualData!['temperature'])),
+                      Text(AppLocalizations.of(context).humidity(actualData!['humidity'])),
+                      Text(AppLocalizations.of(context).wind(actualData!['windSpeed'])),
                       const Divider(),
                     ],
                   ),

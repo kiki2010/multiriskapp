@@ -3,9 +3,13 @@
     "floodRisk": "Riesgo de inundación",
     "nearMe": "Cerca de mí",
     "setting": "Configuración",
+    "high": "Alto",
+    "medium": "Medio",
+    "low": "Bajo",
+    "getRisk": "Obteniendo el Riesgo",
     "titleFireRiskScreen": "Pantalla de riesgo de incendio",
     "fireRiskLevel": "Riesgo de incendio: {fireRiskLevel}",
-    "temperature": "Temperatura: {actualData!['temperature']} °C",
-    "humidity": "Humedad: {actualData!['humidity']} %",
-    "wind": "Velocidad del Viento: ${actualData!['windSpeed']} km/h"
+    "temperature": "Temperatura: {temperature} °C",
+    "humidity": "Humedad: {humidity} %",
+    "wind": "Velocidad del Viento: ${wind} km/h"
 }

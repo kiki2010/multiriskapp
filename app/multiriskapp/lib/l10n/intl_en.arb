@@ -3,9 +3,13 @@
     "floodRisk": "Flood Risk",
     "nearMe": "Near me",
     "setting": "Setting",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "getRisk": "Getting Risk",
     "titleFireRiskScreen": "Fire Risk Screen",
     "fireRiskLevel": "Fire Risk: {fireRiskLevel}",
-    "temperature": "Temperature: {actualData!['temperature']} °C",
-    "humidity": "Humidity: {actualData!['humidity']} %",
-    "wind": "Wind: ${actualData!['windSpeed']} km/h"
+    "temperature": "Temperature: {temperature} °C",
+    "humidity": "Humidity: {humidity} %",
+    "wind": "Wind: ${wind} km/h"
 }
