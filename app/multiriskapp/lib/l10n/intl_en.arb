@@ -2,5 +2,10 @@
     "fireRisk": "Fire Risk",
     "floodRisk": "Flood Risk",
     "nearMe": "Near me",
-    "setting": "Setting"
+    "setting": "Setting",
+    "titleFireRiskScreen": "Fire Risk Screen",
+    "fireRiskLevel": "Fire Risk: {fireRiskLevel}",
+    "temperature": "Temperature: {actualData!['temperature']} °C",
+    "humidity": "Humidity: {actualData!['humidity']} %",
+    "wind": "Wind: ${actualData!['windSpeed']} km/h"
 }

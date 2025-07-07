@@ -86,6 +86,32 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Fire Risk Screen`
+  String get titleFireRiskScreen {
+    return Intl.message(
+      'Fire Risk Screen',
+      name: 'titleFireRiskScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fire Risk: {fireRiskLevel}`
+  String fireRiskLevel(Object fireRiskLevel) {
+    return Intl.message(
+      'Fire Risk: $fireRiskLevel',
+      name: 'fireRiskLevel',
+      desc: '',
+      args: [fireRiskLevel],
+    );
+  }
+
+  // skipped getter for the 'temperature' key
+
+  // skipped getter for the 'humidity' key
+
+  // skipped getter for the 'wind' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

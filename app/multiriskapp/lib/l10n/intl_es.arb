@@ -1,6 +1,11 @@
 {
-    "fireRisk": "Riesgo Incendio",
-    "floodRisk": "Riesgo Inundación",
-    "nearMe": "Cerca de Mi",
-    "setting": "Ajustes"
+    "fireRisk": "Riesgo de incendio",
+    "floodRisk": "Riesgo de inundación",
+    "nearMe": "Cerca de mí",
+    "setting": "Configuración",
+    "titleFireRiskScreen": "Pantalla de riesgo de incendio",
+    "fireRiskLevel": "Riesgo de incendio: {fireRiskLevel}",
+    "temperature": "Temperatura: {actualData!['temperature']} °C",
+    "humidity": "Humedad: {actualData!['humidity']} %",
+    "wind": "Velocidad del Viento: ${actualData!['windSpeed']} km/h"
 }

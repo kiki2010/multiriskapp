@@ -19,11 +19,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static m0(fireRiskLevel) => "Fire Risk: ${fireRiskLevel}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "fireRisk" : MessageLookupByLibrary.simpleMessage("Fire Risk"),
+    "fireRiskLevel" : m0,
     "floodRisk" : MessageLookupByLibrary.simpleMessage("Flood Risk"),
     "nearMe" : MessageLookupByLibrary.simpleMessage("Near me"),
-    "setting" : MessageLookupByLibrary.simpleMessage("Setting")
+    "setting" : MessageLookupByLibrary.simpleMessage("Setting"),
+    "titleFireRiskScreen" : MessageLookupByLibrary.simpleMessage("Fire Risk Screen")
   };
 }
