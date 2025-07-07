@@ -7,7 +7,7 @@
     "medium": "Medio",
     "low": "Bajo",
     "getRisk": "Obteniendo el Riesgo",
-    "titleFireRiskScreen": "Pantalla de riesgo de incendio",
+    "titleFireRiskScreen": "Riesgo de incendio",
     "fireRiskLevel": "Riesgo de incendio: {fireRiskLevel}",
     "temperature": "Temperatura: {temperature} °C",
     "humidity": "Humedad: {humidity} %",
