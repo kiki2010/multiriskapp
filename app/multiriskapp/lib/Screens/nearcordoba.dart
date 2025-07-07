@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
 class nearCordobaScreen extends StatefulWidget {
   const nearCordobaScreen({super.key});
@@ -92,7 +92,7 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
                     final name = data['name'] ?? 'Unnamed';
                     final location = data['location'] ?? ['0', '0'];
                     final services = data['services'] ?? '';
-                    final link = data['link'] ?? '';
+                    //final link = data['link'] ?? '';
                     final distance = _calculateDistance(location).toStringAsFixed(2);
 
                     return ExpansionTile(
@@ -102,26 +102,26 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
                       children: [
                         ListTile(
                           title: Text('Services $services'),
-                          subtitle: link.isNotEmpty
-                            ? TextButton(
-                              onPressed: () async {
-                                final rawLink = link.trim();
-                                final finalUrl = rawLink.startsWith('http') ? rawLink : 'https://$rawLink';
-                                final uri = Uri.parse(finalUrl);
-                                if (await canLaunchUrl(uri)) {
-                                  await launchUrl(uri, mode: LaunchMode.externalApplication);
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text("The link couldn't be open")),
-                                  );
-                                }
-                              },
-                              child: const Text(
-                                'Open Link',
-                                style: TextStyle(decoration: TextDecoration.underline),
-                              ),
-                            )
-                          : const Text('')
+//                          subtitle: link.isNotEmpty
+//                            ? TextButton(
+//                              onPressed: () async {
+//                                final rawLink = link.trim();
+//                                final finalUrl = rawLink.startsWith('http') ? rawLink : 'https://$rawLink';
+//                                final uri = Uri.parse(finalUrl);
+//                                if (await canLaunchUrl(uri)) {
+//                                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+//                                } else {
+//                                  ScaffoldMessenger.of(context).showSnackBar(
+//                                    SnackBar(content: Text("The link couldn't be open")),
+//                                  );
+//                                }
+//                              },
+//                              child: const Text(
+//                                'Open Link',
+//                                style: TextStyle(decoration: TextDecoration.underline),
+//                              ),
+//                            )
+//                          : const Text('')
                         ),
                       ],
                     );
