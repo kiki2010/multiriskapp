@@ -19,28 +19,41 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static m0(fireRiskLevel) => "Fire Risk: ${fireRiskLevel}";
+  static m0(spi) => "SPI: ${spi}";
 
-  static m1(humidity) => "Humidity: ${humidity} %";
+  static m1(fireRiskLevel) => "Fire Risk: ${fireRiskLevel}";
 
-  static m2(temperature) => "Temperature: ${temperature} °C";
+  static m2(floodRiskLevel) => "Flood Risk: ${floodRiskLevel}";
 
-  static m3(wind) => "Wind: \$${wind} km/h";
+  static m3(humidity) => "Humidity: ${humidity} %";
+
+  static m4(precipRate) => "Rain (Rate): ${precipRate}";
+
+  static m5(temperature) => "Temperature: ${temperature} °C";
+
+  static m6(rain) => "Rain: ${rain}";
+
+  static m7(wind) => "Wind: \$${wind} km/h";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "SPI" : m0,
     "fireRisk" : MessageLookupByLibrary.simpleMessage("Fire Risk"),
-    "fireRiskLevel" : m0,
+    "fireRiskLevel" : m1,
     "floodRisk" : MessageLookupByLibrary.simpleMessage("Flood Risk"),
+    "floodRiskLevel" : m2,
     "getRisk" : MessageLookupByLibrary.simpleMessage("Getting Risk"),
     "high" : MessageLookupByLibrary.simpleMessage("High"),
-    "humidity" : m1,
+    "humidity" : m3,
     "low" : MessageLookupByLibrary.simpleMessage("Low"),
     "medium" : MessageLookupByLibrary.simpleMessage("Medium"),
     "nearMe" : MessageLookupByLibrary.simpleMessage("Near me"),
+    "rateRain" : m4,
     "setting" : MessageLookupByLibrary.simpleMessage("Setting"),
-    "temperature" : m2,
+    "temperature" : m5,
     "titleFireRiskScreen" : MessageLookupByLibrary.simpleMessage("Fire Risk Screen"),
-    "wind" : m3
+    "titleFloodRiskScreen" : MessageLookupByLibrary.simpleMessage("Riesgo de Inundación"),
+    "totalRain" : m6,
+    "wind" : m7
   };
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:multiriskapp/generated/l10n.dart';
+import 'package:multiriskapp/predict.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:multiriskapp/weatherstationsdata.dart';
-import 'package:multiriskapp/predict.dart';
 
 class Floodscreen extends StatefulWidget {
   final Position position;
@@ -74,26 +75,26 @@ class _FloodscreenState extends State<Floodscreen> {
     //Depending on the case, determine a text and color
     switch(floodRiskLevel) {
       case 'LOW':
-        floodRiskText = 'Low';
+        floodRiskText = AppLocalizations.of(context).low;
         floodRiskColor = Colors.green;
         break;
       case 'MEDIUM':
-        floodRiskText = 'Medium';
+        floodRiskText = AppLocalizations.of(context).medium;
         floodRiskColor = Colors.amber;
         break;
       case 'HIGH':
-        floodRiskText = 'High';
+        floodRiskText = AppLocalizations.of(context).low;
         floodRiskColor = Colors.red;
         break;
       default:
-        floodRiskText = 'Getting Risk';
+        floodRiskText = AppLocalizations.of(context).getRisk;
         floodRiskColor = Colors.grey;
     }
     
     //Scaffold of the app
     return Scaffold(
       //Title of the screen
-      appBar: AppBar(title: Text("Flood Risk Screen"),),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).titleFloodRiskScreen),),
       //Body with a Circular Progress Indicator, until the data is obtained
       body: isLoading
       ? const Center(child: CircularProgressIndicator(),)
@@ -107,12 +108,12 @@ class _FloodscreenState extends State<Floodscreen> {
               //Divider, all the data, but the Risk Icon is outside a sizedBox, I think Dividers looks cool
               const Divider(),
               Icon(Icons.water, color: floodRiskColor, size: 65,),
-              Text("Flood Risk: $floodRiskText"),
+              Text(AppLocalizations.of(context).floodRiskLevel(floodRiskText)),
               const SizedBox(height: 0),
-              Text("Humidity: ${actualData!['humidity']} %"),
-              Text("Rain (Total): ${actualData!['rain']} mm"),
-              Text("Rain (Rate): ${actualData!['precipRate']}"),
-              Text("SPI: ${historicalData!['spi']}"),
+              Text(AppLocalizations.of(context).humidity(actualData!['humidity'])),
+              Text(AppLocalizations.of(context).totalRain(actualData!['rain'])),
+              Text(AppLocalizations.of(context).rateRain(actualData!['precipRate'])),
+              Text(AppLocalizations.of(context).SPI(historicalData!['spi'])),
               const Divider(),
             ],
           ),

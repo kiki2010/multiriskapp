@@ -11,5 +11,10 @@
     "fireRiskLevel": "Riesgo de incendio: {fireRiskLevel}",
     "temperature": "Temperatura: {temperature} °C",
     "humidity": "Humedad: {humidity} %",
-    "wind": "Velocidad del Viento: ${wind} km/h"
+    "wind": "Velocidad del Viento: ${wind} km/h",
+    "titleFloodRiskScreen": "Riesgo de Inundación",
+    "floodRiskLevel": "Riesgo de inundacion: {floodRiskLevel}",
+    "totalRain": "Lluvia Total: {rain} mm",
+    "rateRain": "Intensidad Lluvia: {precipRate}",
+    "SPI": "SPI: {spi}"
 }

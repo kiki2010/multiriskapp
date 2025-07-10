@@ -176,6 +176,56 @@ class AppLocalizations {
       args: [wind],
     );
   }
+
+  /// `Riesgo de Inundación`
+  String get titleFloodRiskScreen {
+    return Intl.message(
+      'Riesgo de Inundación',
+      name: 'titleFloodRiskScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flood Risk: {floodRiskLevel}`
+  String floodRiskLevel(Object floodRiskLevel) {
+    return Intl.message(
+      'Flood Risk: $floodRiskLevel',
+      name: 'floodRiskLevel',
+      desc: '',
+      args: [floodRiskLevel],
+    );
+  }
+
+  /// `Rain: {rain}`
+  String totalRain(Object rain) {
+    return Intl.message(
+      'Rain: $rain',
+      name: 'totalRain',
+      desc: '',
+      args: [rain],
+    );
+  }
+
+  /// `Rain (Rate): {precipRate}`
+  String rateRain(Object precipRate) {
+    return Intl.message(
+      'Rain (Rate): $precipRate',
+      name: 'rateRain',
+      desc: '',
+      args: [precipRate],
+    );
+  }
+
+  /// `SPI: {spi}`
+  String SPI(Object spi) {
+    return Intl.message(
+      'SPI: $spi',
+      name: 'SPI',
+      desc: '',
+      args: [spi],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
