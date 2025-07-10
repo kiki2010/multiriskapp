@@ -19,5 +19,9 @@
     "SPI": "SPI: {spi}",
     "placesNearCordoba": "Places Near Cordoba",
     "loadData": "Loading Data",
-    "noFound": "No places found"
+    "noFound": "No places found",
+    "settingScreen": "Setting Screen",
+    "lenguage": "Change Lenguage",
+    "themeColor": "Dark Theme",
+    "suggestions": "If you want to make a suggestion, do not hesitate to write to multiriskapp@gmail.com"
 }

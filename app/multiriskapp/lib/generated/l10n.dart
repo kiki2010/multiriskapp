@@ -256,6 +256,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Setting Screen`
+  String get settingScreen {
+    return Intl.message(
+      'Setting Screen',
+      name: 'settingScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Lenguage`
+  String get lenguage {
+    return Intl.message(
+      'Change Lenguage',
+      name: 'lenguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark Theme`
+  String get themeColor {
+    return Intl.message(
+      'Dark Theme',
+      name: 'themeColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you want to make a suggestion, do not hesitate to write to multiriskapp@gmail.com`
+  String get suggestions {
+    return Intl.message(
+      'If you want to make a suggestion, do not hesitate to write to multiriskapp@gmail.com',
+      name: 'suggestions',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

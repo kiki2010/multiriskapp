@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multiriskapp/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:multiriskapp/providers/theme.dart';
 import 'package:multiriskapp/models/theme_preferences.dart';
@@ -12,13 +13,13 @@ class settingScreen extends StatelessWidget {
     final currentLocale = Provider.of<LanguageProvider>(context).currentLocale;
     
     return Scaffold(
-      appBar: AppBar(title: Text("Setting Screen"),),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).settingScreen),),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Divider(),
-              Text('Change Lenguage'),
+              Text(AppLocalizations.of(context).lenguage),
               DropdownButton<String>(
                 value: currentLocale.languageCode,
                 onChanged: (String? newValue) {
@@ -40,7 +41,7 @@ class settingScreen extends StatelessWidget {
               ),
             Divider(),
               SwitchListTile(
-                title: Text('Dark Theme'),
+                title: Text(AppLocalizations.of(context).themeColor),
                 value: isDark,
                 onChanged: (value) {
                   themeProvider.setTheme =
@@ -48,7 +49,7 @@ class settingScreen extends StatelessWidget {
                 },
               ),
             Divider(),
-              Text('If you want to make a suggestion, do not hesitate to write to multiriskapp@gmail.com'),
+              Text(AppLocalizations.of(context).suggestions),
             Divider(),
           ],
         ),

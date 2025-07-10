@@ -19,5 +19,9 @@
     "SPI": "SPI: {spi}",
     "placesNearCordoba": "Cerca de Córdoba",
     "loadData": "Cargando Datos",
-    "noFound": "No se encontraron lugares"
+    "noFound": "No se encontraron lugares",
+    "settingScreen": "Configuración",
+    "lenguage": "Cambiar Idioma",
+    "themeColor": "Tema Oscuro",
+    "suggestions": "Si deseas hacer alguna sugerencia no dudes en escribirnos a multiriskapp@gmail.com"
 }
