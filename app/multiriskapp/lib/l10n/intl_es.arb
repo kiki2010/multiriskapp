@@ -16,5 +16,8 @@
     "floodRiskLevel": "Riesgo de inundacion: {floodRiskLevel}",
     "totalRain": "Lluvia Total: {rain} mm",
     "rateRain": "Intensidad Lluvia: {precipRate}",
-    "SPI": "SPI: {spi}"
+    "SPI": "SPI: {spi}",
+    "placesNearCordoba": "Cerca de Córdoba",
+    "loadData": "Cargando Datos",
+    "noFound": "No se encontraron lugares"
 }

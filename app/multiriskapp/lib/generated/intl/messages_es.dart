@@ -31,7 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m5(temperature) => "Temperatura: ${temperature} °C";
 
-  static m6(rain) => "Lluvia Total: ${rain}";
+  static m6(rain) => "Lluvia Total: ${rain} mm";
 
   static m7(wind) => "Velocidad del Viento: \$${wind} km/h";
 
@@ -45,9 +45,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "getRisk" : MessageLookupByLibrary.simpleMessage("Obteniendo el Riesgo"),
     "high" : MessageLookupByLibrary.simpleMessage("Alto"),
     "humidity" : m3,
+    "loadData" : MessageLookupByLibrary.simpleMessage("Cargando Datos"),
     "low" : MessageLookupByLibrary.simpleMessage("Bajo"),
     "medium" : MessageLookupByLibrary.simpleMessage("Medio"),
     "nearMe" : MessageLookupByLibrary.simpleMessage("Cerca de mí"),
+    "noFound" : MessageLookupByLibrary.simpleMessage("No se encontraron lugares"),
+    "placesNearCordoba" : MessageLookupByLibrary.simpleMessage("Cerca de Córdoba"),
     "rateRain" : m4,
     "setting" : MessageLookupByLibrary.simpleMessage("Configuración"),
     "temperature" : m5,

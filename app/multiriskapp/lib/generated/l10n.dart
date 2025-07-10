@@ -197,10 +197,10 @@ class AppLocalizations {
     );
   }
 
-  /// `Rain: {rain}`
+  /// `Rain: {rain} mm`
   String totalRain(Object rain) {
     return Intl.message(
-      'Rain: $rain',
+      'Rain: $rain mm',
       name: 'totalRain',
       desc: '',
       args: [rain],
@@ -224,6 +224,36 @@ class AppLocalizations {
       name: 'SPI',
       desc: '',
       args: [spi],
+    );
+  }
+
+  /// `Places Near Cordoba`
+  String get placesNearCordoba {
+    return Intl.message(
+      'Places Near Cordoba',
+      name: 'placesNearCordoba',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading Data`
+  String get loadData {
+    return Intl.message(
+      'Loading Data',
+      name: 'loadData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No places found`
+  String get noFound {
+    return Intl.message(
+      'No places found',
+      name: 'noFound',
+      desc: '',
+      args: [],
     );
   }
 }

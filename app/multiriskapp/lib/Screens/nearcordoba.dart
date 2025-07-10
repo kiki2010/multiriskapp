@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:multiriskapp/generated/l10n.dart';
 //import 'package:url_launcher/url_launcher.dart';
 
 class nearCordobaScreen extends StatefulWidget {
@@ -52,7 +53,7 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Places Near Cordoba"),
+        title: Text(AppLocalizations.of(context).placesNearCordoba),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,12 +79,12 @@ class _nearCordobaScreenState extends State<nearCordobaScreen> {
               stream: _categoryStream(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return const Center(child: Text("Loading data"));
+                  return Center(child: Text(AppLocalizations.of(context).loadData));
                 }
                 final docs = snapshot.data!.docs;
                 
                 if (docs.isEmpty) {
-                  return const Center(child: Text("No places found"));
+                  return Center(child: Text(AppLocalizations.of(context).noFound));
                 }
                 
                 return ListView(

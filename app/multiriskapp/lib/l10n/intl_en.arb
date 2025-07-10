@@ -16,5 +16,8 @@
     "floodRiskLevel": "Flood Risk: {floodRiskLevel}",
     "totalRain": "Rain: {rain} mm",
     "rateRain": "Rain (Rate): {precipRate}",
-    "SPI": "SPI: {spi}"
+    "SPI": "SPI: {spi}",
+    "placesNearCordoba": "Places Near Cordoba",
+    "loadData": "Loading Data",
+    "noFound": "No places found"
 }
