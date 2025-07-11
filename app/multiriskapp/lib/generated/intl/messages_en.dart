@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m6(rain) => "Rain: ${rain} mm";
 
-  static m7(wind) => "Wind: \$${wind} km/h";
+  static m7(wind) => "Wind: ${wind} km/h";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
