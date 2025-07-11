@@ -83,7 +83,7 @@ class _FloodscreenState extends State<Floodscreen> {
         floodRiskColor = Colors.amber;
         break;
       case 'HIGH':
-        floodRiskText = AppLocalizations.of(context).low;
+        floodRiskText = AppLocalizations.of(context).high;
         floodRiskColor = Colors.red;
         break;
       default:
