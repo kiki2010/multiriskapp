@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ThemePreferences prefs = ThemePreferences();
   String theme = await prefs.getTheme();
-
+  
   Position position = await getUserLocation();
 
   await Firebase.initializeApp(
