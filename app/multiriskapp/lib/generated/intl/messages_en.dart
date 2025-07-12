@@ -59,7 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "temperature" : m5,
     "themeColor" : MessageLookupByLibrary.simpleMessage("Dark Theme"),
     "titleFireRiskScreen" : MessageLookupByLibrary.simpleMessage("Fire Risk Screen"),
-    "titleFloodRiskScreen" : MessageLookupByLibrary.simpleMessage("Riesgo de Inundación"),
+    "titleFloodRiskScreen" : MessageLookupByLibrary.simpleMessage("Flood Risk Screen"),
     "totalRain" : m6,
     "wind" : m7
   };

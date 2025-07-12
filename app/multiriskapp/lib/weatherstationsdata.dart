@@ -92,7 +92,7 @@ class WeatherStationService {
       final data = json.decode(response.body);
       final observation = data['observations'][0];
 
-      final double humidity = observation['humidity'] ?? 0.0;
+      final double humidity = observation['humidity']?.toDouble() ?? 0.0;
       final double temp = observation['metric']['temp']?.toDouble() ?? 0.0;
       final double windSpeed = observation['metric']['windSpeed']?.toDouble() ?? 0.0;
       final double precipTotal = observation['metric']['precipTotal']?.toDouble() ?? 0.0;
