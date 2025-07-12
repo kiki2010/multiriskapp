@@ -1,6 +1,6 @@
 ﻿#  **MultiRisk App**
-[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
 Showing the risk of fire and flooding, publicize safe places to camp and enjoy natural landscapes without risk.
+[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
 
 ## **The Idea**
 > There are hungreds of enviromental problems affecting the province of Córdoba, Argentina. Many of them can be avoided or the risk and damage can be reduce through awareness and early warnings.
