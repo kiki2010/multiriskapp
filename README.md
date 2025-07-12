@@ -80,23 +80,23 @@ Then run on this project
 So you can download the libraries
 An then just test the app and make code changes :D
 
-#**Problems during development**
-##**Lenguage didn't update**
+# **Problems during development**
+## **Lenguage didn't update**
 While translating the app, many changes weren't reflected or were displayed incorrectly. The problem was that the Flutter project wasn't properly linked—a small mistake caused by trying to move quickly through a somewhat boring part of development 😅.
 
-##**Overtraining**
+## **Overtraining**
 I don't have enough examples to improve the AI model, which causes it to be overtrained and exaggerate risk values.
 It tends toward high/medium risk in both screens.
 The solution is to get more data examples.
 
-##**Problems with Firebase**
+## **Problems with Firebase**
 During development, I wasn't calling FireBase correctly. This led to information not being displayed correctly but not receiving errors. I fixed it by starting this section from scratch, and that's when I was able to truly identify the error.
 
-##**What I learned**
+## **What I learned**
 I learned a lot during development. All the mistakes that arose and the implementation of tools I hadn't used before led me to improve the structure of my projects.
 However, I feel that what I most appreciate about what I learned is how to create a readme and use GitHub better, trying to do everything as best as possible so that others can understand and use the program.
 
-#**Special thanks**
+# **Special thanks**
 I want to give special thanks to my notebooks, where I can express all my ideas. I also want to thank the MATTEO project (https://sites.google.com/view/proyectomatteo/material-educativo/riesgo-de-incendio) and its fire risk section. Their information was really helpful in creating the risk classification model. I also want to extend a big hug to all the experts on this project who were willing to answer my questions about the weather stations.
 ![libretas](https://github.com/user-attachments/assets/fb6d2819-8e6e-433e-b7b5-1e29750cd604)
 ![libretas1](https://github.com/user-attachments/assets/52e05142-869c-4f1f-8a0b-55edd8d2dfae)
